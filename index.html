@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <h1>Flashcard App</h1>
+    
+    
+    
+    <div class = "menu">
+      <button onclick = "handlers.displayFlashcards()" >Start Learning</button>
+    </div>
+    
+    
+    <div class = "flashcardContainer">
+      <button style = "position: absolute; top:40%;">PREVIOUS</button>
+      <button style = "position:absolute; right:0px; top:40%;">NEXT</button>
+      <div class = "displayFlascard">
+        <p id = "displayFlashcard" >
+        
+        </p>
+      </div>
+    </div>
+    
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    
+    <div class = "menu">
+      <button onclick = "handlers.addFlashcard()">Upload Flashcards</button>
+    </div>
+    
+    <div class = "addInfoLeft">
+      <input id="addFlashcardQuestionInput" type="text">
+    </div>
+    <div class = "addInfoRight">
+      <input id="addFlashcardTranslationInput" type="text">
+    </div>
+  </body>
+
+</html>
