@@ -1,0 +1,42 @@
+
+
+.addInfoLeft {
+  margin-left: 18%;
+  width: 30%;
+  border: 3px solid green;
+  float: left;
+}
+.addInfoRight {
+  margin-right: 18%;
+  width: 30%;
+  border: 3px solid green;
+  float: right;
+}
+
+.displayFlascard {
+  margin: auto;
+  width: 65%;
+  border: 2px solid blue;
+  height: 170px;
+  text-align:center;
+  
+}
+
+.flashcardContainer {
+  margin: auto;
+  width: 65%;
+  position: relative;
+}
+
+.menu {
+  margin:auto;
+  width:80%;
+  text-align:center;
+  padding:20px;
+}
+
+
+
+h1 {
+  text-align:center;
+}
