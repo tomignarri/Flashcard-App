@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-
+  
+  
   <body>
     <h1>Flashcard App</h1>
     
     
     
     <div class = "menu">
-      <button onclick = "handlers.displayFlashcards()" >Start Learning</button>
+      <button id = "displayFlashcards" >Start Learning</button>
     </div>
     
     
     <div class = "flashcardContainer">
-      <button style = "position: absolute; top:40%;">PREVIOUS</button>
-      <button style = "position:absolute; right:0px; top:40%;">NEXT</button>
+      <button id = "previousFlashcard" style = "position: absolute; top:40%;">PREVIOUS</button>
+      <button id = "nextFlashcard" style = "position:absolute; right:0px; top:40%;">
+        NEXT
+      </button>
       <div class = "displayFlascard">
         <p id = "displayFlashcard" >
         
@@ -42,5 +40,10 @@
       <input id="addFlashcardTranslationInput" type="text">
     </div>
   </body>
-
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  
+  
 </html>
