@@ -18,18 +18,24 @@ var flashcardList = {
 };
 
 
-
 var currentFlashcard = 0;
 
 // Handle button functionality.
 var handlers = {
   
+  isFlipped: false,
   
   // Recieves Input.
   addFlashcard: function() {
     var addFlashcardQuestionInput = document.getElementById('addFlashcardQuestionInput');
     var addFlashcardTranslationInput = document.getElementById('addFlashcardTranslationInput');
-
+    
+    // Trim any values entered to avoid entering spaces and for user QOF.
+    addFlashcardQuestionInput.value.trim();
+    addFlashcardTranslationInput.value.trim();
+    
+    // This only runs the rest of the function if the forms have content.
+    if(addFlashcardQuestionInput.value || addFlashcardTranslationInput.value){
     // Invoke addFlashcard function from flashcardList object.
     flashcardList.addFlashcard(addFlashcardQuestionInput.value, addFlashcardTranslationInput.value);
     
@@ -38,14 +44,41 @@ var handlers = {
     addFlashcardTranslationInput.value = '';
     
     console.dir(flashcardList.flashcards);
+
+    }  
   },
   
   // Display first flashcard in list.
   displayFlashcards: function(flashcardNumber){
     
+    // Flip flashcard to question side .
+    this.isFlipped = false;
+    
+    // Notify the user that they have no flashcards.
+    if(flashcardList.flashcards === undefined || flashcardList.flashcards.length == 0){
+      window.alert("You have no flashcards!");
+      return;
+    }
+    
     // if flashcardNumber is greater or less than range switch to range
     document.getElementById("displayFlashcard").innerHTML = flashcardList.flashcards[flashcardNumber].fcTextQuestion;
   },
+  
+  // Flip flashcard when the user presses the flashcard.
+  flipFlashcard: function(){
+    
+    if(this.isFlipped === false){
+      document.getElementById("displayFlashcard").innerHTML = flashcardList.flashcards[currentFlashcard].fcTextTranslated;
+      //document.getElementById("flashcardContainer").style.backgroundColor = "lightgreen";
+    } else {
+      this.displayFlashcards(currentFlashcard);
+      //document.getElementById("flashcardContainer").style.backgroundColor = "white";
+    }
+    this.isFlipped = !this.flipped;
+  }
+  
+  
+  
 };
 
 
@@ -72,13 +105,26 @@ var view = {
     }
     
     nextFlashcardButton.addEventListener("click", function() {
+      
       currentFlashcard++;
-      handlers.displayFlashcards(currentFlashcard);
+      if(currentFlashcard === flashcardList.flashcards.length){
+        currentFlashcard = 0;
+        //currentFlashcard = flashcardList.flashcards.length - 1; 
+        handlers.displayFlashcards(currentFlashcard);
+      } else {
+        handlers.displayFlashcards(currentFlashcard);
+      }
+      
     });
     
     previousFlashcardButton.addEventListener("click", function() {
       currentFlashcard--;
-      handlers.displayFlashcards(currentFlashcard);
+      if(currentFlashcard < 0){
+        currentFlashcard = flashcardList.flashcards.length - 1; 
+        handlers.displayFlashcards(currentFlashcard);
+      } else {
+        handlers.displayFlashcards(currentFlashcard);
+      }
     });
     
  
@@ -91,13 +137,28 @@ var view = {
 view.setUpEventListeners();
 
 
+// Get the modal
+var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
 
-/*
-TODO LIST
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-- show list of all flashcards
-- allow deletion of flashcards
-*/
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
 
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

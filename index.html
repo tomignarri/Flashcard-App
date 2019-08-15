@@ -17,11 +17,17 @@
       <button id = "nextFlashcard" style = "position:absolute; right:0px; top:40%;">
         NEXT
       </button>
-      <div class = "displayFlascard">
-        <p id = "displayFlashcard" >
-        
-        </p>
-      </div>
+      
+      
+      <a onclick = "handlers.flipFlashcard()">
+        <div class = "displayFlascard">
+          <p id = "displayFlashcard" >
+          </p>
+        </div>
+      </a>
+      
+      
+      
     </div>
     
     <br><br>
@@ -29,21 +35,38 @@
     <br><br>
     <br><br>
     
-    <div class = "menu">
+    <div>
       <button onclick = "handlers.addFlashcard()">Upload Flashcards</button>
     </div>
     
-    <div class = "addInfoLeft">
-      <input id="addFlashcardQuestionInput" type="text">
+    <div class = "addInfo">
+      <form>
+        <label> Question: 
+          <input id="addFlashcardQuestionInput" type="text">
+        </label>
+        <label> Answer: 
+          <input id="addFlashcardTranslationInput" type="text">
+        </label> 
+      </form>
     </div>
-    <div class = "addInfoRight">
-      <input id="addFlashcardTranslationInput" type="text">
-    </div>
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
+    </div>  
+    
   </body>
+  
   <head>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  
-  
+
 </html>
