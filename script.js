@@ -75,9 +75,34 @@ var handlers = {
       //document.getElementById("flashcardContainer").style.backgroundColor = "white";
     }
     this.isFlipped = !this.flipped;
+  },
+  
+  
+  
+  displayFlashcardList: function(){
+    var table = document.getElementById("flashCardListTable");
+    
+    
+    flashcardList.flashcards.forEach(function(flashcard, position){
+
+      // Create an empty <tr> element and add it to the 1st position of the table:
+      var row = table.insertRow(position);
+    
+      // Insert new cells (<td> elements) of the "new" <tr> element:
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+    
+      // Add some text to the new cells:
+      cell1.innerHTML = position.toString();
+      cell2.innerHTML = "NEW CELL2";
+      cell3.innerHTML = "NEW CELL2";
+   
+      
+      
+    });
+    
   }
-  
-  
   
 };
 
@@ -91,12 +116,40 @@ var view = {
   setUpEventListeners: function(){
     console.log("setUp ran"); 
     
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var modalButton = document.getElementById("modalButton");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
     // Variables representing button objects on the DOM.
     var displayFlashcardsButton = document.getElementById("displayFlashcards");
     var nextFlashcardButton = document.getElementById("nextFlashcard");
     var previousFlashcardButton = document.getElementById("previousFlashcard");
     
-    // The conditional here checks that the button exosts on the DOM.
+    // When the user clicks on the button, open the modal
+    modalButton.onclick = function() {
+      modal.style.display = "block";
+      handlers.displayFlashcardList();
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+      handlers.displayFlashcardList
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // The conditional here checks that the button exists on the DOM.
     if(displayFlashcardsButton){
       console.log("display button pressed");  
       displayFlashcardsButton.addEventListener("click", function() {
@@ -127,8 +180,6 @@ var view = {
       }
     });
     
- 
-    
   }
   
 };
@@ -137,28 +188,9 @@ var view = {
 view.setUpEventListeners();
 
 
-// Get the modal
-var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+
