@@ -8,6 +8,7 @@
     
     
     <div class = "menu">
+      
       <button id = "displayFlashcards" >Start Learning</button>
     </div>
     
@@ -19,12 +20,14 @@
       </button>
       
       
-      <a onclick = "handlers.flipFlashcard()">
-        <div class = "displayFlascard">
-          <p id = "displayFlashcard" >
+      
+      <div id = "displayFlashcard">
+        <span id = "clickableFlashcardDisplay">
+          <p id = "flashcardDisplayArea" >
           </p>
-        </div>
-      </a>
+        </span>
+      </div>
+      
       
       
       
@@ -49,6 +52,18 @@
         </label> 
       </form>
     </div>
+    
+    
+    <div>
+      <button 
+        class = "btn btn-outline-primary btn-sm"
+        id = "accessGoogleTranslateButton">Make Request</button>
+      
+      <p>
+        
+      </p>
+      
+    </div>
 
     <!-- Trigger/Open The Modal -->
     <button id="modalButton">Open Modal</button>
@@ -60,7 +75,7 @@
         <span class="close">&times;</span>
         
         
-        <table class="table" id="flashCardListTable">
+        <table class="table" >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -68,6 +83,9 @@
               <th scope="col">Answer</th>
             </tr>
           </thead> 
+          <tbody id="flashCardListTable">
+          
+          </tbody>
         </table>
         
       </div>
