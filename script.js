@@ -48,11 +48,33 @@ var handlers = {
     }  
   },
   
-  // Display first flashcard in list.
-  displayFlashcards: function(flashcardNumber){
-    
-    // Flip flashcard to question side .
-    this.isFlipped = false;
+  
+  displayGoogleTranslate: function() {
+    var request = new XMLHttpRequest();
+
+    request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+
+    request.onload = function() {
+      // Begin accessing JSON data here
+      var data = JSON.parse(this.response)
+
+      if (request.status >= 200 && request.status < 400) {
+        data.forEach(movie => {
+          console.log(movie.title)
+        })
+      } else {
+        console.log('error')
+      };
+    };
+
+    // Send request
+    request.send();
+  },
+  
+  
+  // Flip flashcard when the user presses the flashcard.
+  displayFlashcard: function(flashcardNumber){
+    console.log("FLIPPED: ", this.isFlipped);
     
     // Notify the user that they have no flashcards.
     if(flashcardList.flashcards === undefined || flashcardList.flashcards.length == 0){
@@ -60,52 +82,47 @@ var handlers = {
       return;
     }
     
-    // if flashcardNumber is greater or less than range switch to range
-    document.getElementById("displayFlashcard").innerHTML = flashcardList.flashcards[flashcardNumber].fcTextQuestion;
-  },
-  
-  // Flip flashcard when the user presses the flashcard.
-  flipFlashcard: function(){
-    
-    if(this.isFlipped === false){
-      document.getElementById("displayFlashcard").innerHTML = flashcardList.flashcards[currentFlashcard].fcTextTranslated;
-      //document.getElementById("flashcardContainer").style.backgroundColor = "lightgreen";
+    if(this.isFlipped){
+      document.getElementById("flashcardDisplayArea").innerHTML = flashcardList.flashcards[flashcardNumber].fcTextTranslated;
+      document.getElementById("displayFlashcard").style.backgroundColor = "lightgreen";
     } else {
-      this.displayFlashcards(currentFlashcard);
-      //document.getElementById("flashcardContainer").style.backgroundColor = "white";
+      //this.displayFlashcards(currentFlashcard);
+      document.getElementById("flashcardDisplayArea").innerHTML = flashcardList.flashcards[flashcardNumber].fcTextQuestion;
+      document.getElementById("displayFlashcard").style.backgroundColor = "white";
     }
-    this.isFlipped = !this.flipped;
+    
   },
   
   
   
   displayFlashcardList: function(){
-    var table = document.getElementById("flashCardListTable");
+    var tbody = document.getElementById("flashCardListTable");
     
+    tbody.innerHTML = '';
+    
+    //var newTbody = document.createElement('tbody');
+    //tbody.parentNode.replaceChild(newTbody, tbody);
     
     flashcardList.flashcards.forEach(function(flashcard, position){
 
-      // Create an empty <tr> element and add it to the 1st position of the table:
-      var row = table.insertRow(position);
+      // Create an empty <tr> element and add it to the 1st position of the tbody:
+      var row = tbody.insertRow(position);
     
       // Insert new cells (<td> elements) of the "new" <tr> element:
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       var cell3 = row.insertCell(2);
+      //var cell4 = row.insertCell(3);
     
       // Add some text to the new cells:
-      cell1.innerHTML = position.toString();
-      cell2.innerHTML = "NEW CELL2";
-      cell3.innerHTML = "NEW CELL2";
-   
-      
+      cell1.innerHTML = (position + 1).toString();
+      cell2.innerHTML = flashcardList.flashcards[position].fcTextQuestion;
+      cell3.innerHTML = flashcardList.flashcards[position].fcTextTranslated;
+      //cell4.appendChild
       
     });
-    
   }
-  
 };
-
 
 
 
@@ -129,7 +146,15 @@ var view = {
     var displayFlashcardsButton = document.getElementById("displayFlashcards");
     var nextFlashcardButton = document.getElementById("nextFlashcard");
     var previousFlashcardButton = document.getElementById("previousFlashcard");
+    var flipFlashcardButton = document.getElementById("clickableFlashcardDisplay");
+    var accessGoogleTranslate = document.getElementById("accessGoogleTranslateButton");
     
+  
+    flipFlashcardButton.addEventListener("click", function(){
+      handlers.isFlipped = !handlers.isFlipped;  
+      handlers.displayFlashcard(currentFlashcard);
+    });
+  
     // When the user clicks on the button, open the modal
     modalButton.onclick = function() {
       modal.style.display = "block";
@@ -139,7 +164,6 @@ var view = {
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
       modal.style.display = "none";
-      handlers.displayFlashcardList
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -153,34 +177,46 @@ var view = {
     if(displayFlashcardsButton){
       console.log("display button pressed");  
       displayFlashcardsButton.addEventListener("click", function() {
-        handlers.displayFlashcards(currentFlashcard);
+        handlers.isFlipped = false;
+        handlers.displayFlashcard(currentFlashcard);
       });
     }
     
+    accessGoogleTranslate.addEventListener("click", function() {
+      handlers.displayGoogleTranslate();
+    });
+    
     nextFlashcardButton.addEventListener("click", function() {
-      
       currentFlashcard++;
+      handlers.isFlipped = false;
       if(currentFlashcard === flashcardList.flashcards.length){
         currentFlashcard = 0;
         //currentFlashcard = flashcardList.flashcards.length - 1; 
-        handlers.displayFlashcards(currentFlashcard);
+        handlers.displayFlashcard(currentFlashcard);
       } else {
-        handlers.displayFlashcards(currentFlashcard);
+        handlers.displayFlashcard(currentFlashcard);
       }
       
     });
     
     previousFlashcardButton.addEventListener("click", function() {
       currentFlashcard--;
+      handlers.isFlipped = false;
       if(currentFlashcard < 0){
         currentFlashcard = flashcardList.flashcards.length - 1; 
-        handlers.displayFlashcards(currentFlashcard);
+        handlers.displayFlashcard(currentFlashcard);
       } else {
-        handlers.displayFlashcards(currentFlashcard);
+        handlers.displayFlashcard(currentFlashcard);
       }
     });
-    
-  }
+  },
+  
+  createCheckbox: function(){
+		var checkboxInput = document.createElement('input');
+    checkboxInput.setAttribute("type", "checkbox");
+    checkboxInput.className = 'checkboxInput';
+    return checkboxInput;
+	},
   
 };
 

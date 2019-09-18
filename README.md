@@ -12,5 +12,6 @@ TODO
 - save flashcards to database
 - fetch google tranlate definitions
 - use bootstrap grids for responsiveness
+- flashcard editing and deletion
 
 
