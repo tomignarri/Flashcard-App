@@ -3,34 +3,47 @@
   
   
   <body>
-    <h1>Flashcard App</h1>
     
+    <header class="container-fluid">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+            crossorigin="anonymous">
+      <link rel="stylesheet" href="style.css">
+
+    </header>
     
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        Tom's Flashcard App
+      </a>
+    </nav>
     
-    <div class = "menu">
+    <div class="row">
+      <div class = "menu">
       
       <button id = "displayFlashcards" >Start Learning</button>
     </div>
+    </div>
     
     
-    <div class = "flashcardContainer">
-      <button id = "previousFlashcard" class="btn btn-outline-primary btn-sm" style = "position: absolute; top:40%;">PREVIOUS</button>
-      <button id = "nextFlashcard"  class="btn btn-outline-primary btn-sm" style = "position:absolute; right:0px; top:40%;">
-        NEXT
-      </button>
-      
-      
-      
-      <div id = "displayFlashcard">
-        <span id = "clickableFlashcardDisplay">
-          <p id = "flashcardDisplayArea" >
-          </p>
-        </span>
+    
+    <div class = "container">
+      <div class="row">
+        <div class="col-sm">
+          <button id = "previousFlashcard" class="btn btn-outline-primary btn-sm" style = "position: absolute; top:40%;">PREVIOUS</button>
+        </div>
+        <div lass="col-lg">
+          <div id = "displayFlashcard">
+            <span id = "clickableFlashcardDisplay">
+              <p id = "flashcardDisplayArea" ></p>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm">
+          <button id = "nextFlashcard"  class="btn btn-outline-primary btn-sm" style = "position:absolute; right:0px; top:40%;">NEXT</button>
+        </div>
       </div>
       
-      
-      
-      
     </div>
     
     <br><br>
@@ -38,31 +51,34 @@
     <br><br>
     <br><br>
     
-    <div>
-      <button onclick = "handlers.addFlashcard()" class="btn btn-outline-primary">Upload Flashcards</button>
-    </div>
-    
-    <div class = "addInfo">
-      <form>
-        <label> Question: 
-          <input id="addFlashcardQuestionInput" type="text">
-        </label>
-        <label> Answer: 
-          <input id="addFlashcardTranslationInput" type="text">
-        </label> 
-      </form>
-    </div>
-    
-    
-    <div>
-      <button 
-        class = "btn btn-outline-primary btn-sm"
-        id = "accessGoogleTranslateButton">Make Request</button>
-      
-      <p>
-        
-      </p>
-      
+    <div class="container">
+      <div class="row">
+          <div>
+            <button onclick = "handlers.addFlashcard()" class="btn btn-outline-primary">Upload Flashcards</button>
+          </div>
+
+          <div class="col">
+            <form>
+              <label> Question: 
+                <input id="addFlashcardQuestionInput" type="text">
+              </label>
+              <label> Answer: 
+                <input id="addFlashcardTranslationInput" type="text">
+              </label> 
+            </form>
+          </div>
+
+
+          <div class="col">
+            <button 
+              class = "btn btn-outline-primary btn-sm"
+              id = "accessGoogleTranslateButton">Make Request</button>
+            <p>
+
+            </p>
+
+          </div>
+      </div>
     </div>
 
     <!-- Trigger/Open The Modal -->
@@ -89,14 +105,23 @@
         </table>
         
       </div>
-    </div>  
+    </div> 
+    
+    
+    
+    
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+            crossorigin="anonymous"></script>
     
   </body>
   
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bootstrap.css">
-    <script src="script.js"></script>
-  </head>
 
 </html>
