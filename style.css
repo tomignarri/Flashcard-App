@@ -1,7 +1,5 @@
 
-.addInfo {
-  margin: auto;
-}
+
 
 #displayFlashcard {
   margin: auto;
@@ -25,12 +23,12 @@
 
 }   
 
-.flashcardContainer {
+/* .flashcardContainer {
   margin: auto;
   width: 65%;
   min-width: 600px;
   position: relative;
-}
+} */
 
 .menu {
   margin:auto;
