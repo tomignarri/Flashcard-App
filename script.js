@@ -29,6 +29,7 @@ var handlers = {
   addFlashcard: function() {
     var addFlashcardQuestionInput = document.getElementById('addFlashcardQuestionInput');
     var addFlashcardTranslationInput = document.getElementById('addFlashcardTranslationInput');
+    //var displayFlashcardCount = document.querySelector("#displayFlashcardCount");
     
     // Trim any values entered to avoid entering spaces and for user QOF.
     addFlashcardQuestionInput.value.trim();
@@ -42,7 +43,9 @@ var handlers = {
     // CLear the input fields.
     addFlashcardQuestionInput.value = '';
     addFlashcardTranslationInput.value = '';
-    
+      
+    document.querySelector("#displayFlashcardTotal").textContent = flashcardList.flashcards.length;
+
     console.dir(flashcardList.flashcards);
 
     }  
@@ -91,6 +94,9 @@ var handlers = {
       document.getElementById("displayFlashcard").style.backgroundColor = "white";
     }
     
+    // Show current flashcard index.
+    document.querySelector("#displayFlashcardCount").textContent = (currentFlashcard + 1);
+    
   },
   
   
@@ -99,9 +105,6 @@ var handlers = {
     var tbody = document.getElementById("flashCardListTable");
     
     tbody.innerHTML = '';
-    
-    //var newTbody = document.createElement('tbody');
-    //tbody.parentNode.replaceChild(newTbody, tbody);
     
     flashcardList.flashcards.forEach(function(flashcard, position){
 
@@ -148,6 +151,7 @@ var view = {
     var previousFlashcardButton = document.getElementById("previousFlashcard");
     var flipFlashcardButton = document.getElementById("clickableFlashcardDisplay");
     var accessGoogleTranslate = document.getElementById("accessGoogleTranslateButton");
+    //var displayFlashcardNumber = document.querySelector("#displayFlashcardCount");
     
   
     flipFlashcardButton.addEventListener("click", function(){
@@ -187,6 +191,12 @@ var view = {
     });
     
     nextFlashcardButton.addEventListener("click", function() {
+      
+      // Prevent using from iterating card count before displaying cards.
+      if(document.querySelector("#flashcardDisplayArea").innerHTML === ''){
+        window.alert("Press get started button first");
+        return;
+      }
       currentFlashcard++;
       handlers.isFlipped = false;
       if(currentFlashcard === flashcardList.flashcards.length){
@@ -196,10 +206,15 @@ var view = {
       } else {
         handlers.displayFlashcard(currentFlashcard);
       }
-      
     });
     
     previousFlashcardButton.addEventListener("click", function() {
+      
+      // Prevent using from iterating card count before displaying cards.
+      if(document.querySelector("#flashcardDisplayArea").innerHTML === ''){
+        window.alert("Press get started button first");
+        return;
+      }
       currentFlashcard--;
       handlers.isFlipped = false;
       if(currentFlashcard < 0){

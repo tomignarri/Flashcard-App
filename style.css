@@ -3,13 +3,12 @@
 
 #displayFlashcard {
   margin: auto;
-  width: 65%;
-  min-width: 300px;
-  max-width: 400px;
-  border: 2px solid blue;
-  height: 170px;
+  width: 75%;
+  border: 1px solid grey;
+  border-radius: 10px;
+  height: 250px;
   text-align:center;
-  position:relative;
+  box-shadow: 5px 5px #888888;
 }
 
 #clickableFlashcardDisplay { 
@@ -18,24 +17,11 @@
   height:100%;
   top:0;
   left: 0;
-  order: 2px solid red;
+  right: 0;
+/*   border: 2px solid red; */
   z-index: 1;
-
 }   
 
-/* .flashcardContainer {
-  margin: auto;
-  width: 65%;
-  min-width: 600px;
-  position: relative;
-} */
-
-.menu {
-  margin:auto;
-  width:80%;
-  text-align:center;
-  padding:20px;
-}
 
 h1 {
   text-align:center;
@@ -80,4 +66,40 @@ h1 {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.btn {
+  font-weight: 300;
+}
+
+.btn-outline-dark {
+  border-color: #979797;
+  border-width: 1.5px;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 5px 10px;
+  border: 1px solid #979797;
+  border-right: 0px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+#googleTranslateOutput {
+  height: 150px;
+  border: 1px solid #979797;
+  padding: 5px 10px;
+}
+
+#previousFlashcard {
+  font-size: 60px;
+  border: 0px;
+}
+
+#nextFlashcard {
+  font-size: 60px;
+  border: 0px;
 }
