@@ -1,0 +1,22 @@
+{
+  "name": "flashcard-app",
+  "version": "1.0.0",
+  "description": "Flashcard App ------------",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomignarri/Flashcard-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomignarri/Flashcard-App/issues"
+  },
+  "homepage": "https://github.com/tomignarri/Flashcard-App#readme",
+  "dependencies": {
+    "@google-cloud/translate": "^4.1.3"
+  }
+}
