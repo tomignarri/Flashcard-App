@@ -3,7 +3,7 @@
 
 #displayFlashcard {
   margin: auto;
-  width: 75%;
+  width: 80%;
   border: 1px solid grey;
   border-radius: 10px;
   height: 250px;
@@ -12,8 +12,9 @@
 }
 
 #clickableFlashcardDisplay { 
-  position:absolute; 
-  width:100%;
+  position:absolute;
+  margin: auto; 
+  width:75%;
   height:100%;
   top:0;
   left: 0;
