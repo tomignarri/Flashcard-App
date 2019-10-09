@@ -10,6 +10,15 @@ var flashcards = [
 ];
 
 
-app.get('/', (req, res) => res.render("home"))
+// Post to an input action
+app.post("/newFlashcard", function(req, res){
+    var question = req.body.question;
+    var translation = req.body.translation;
+    var newFlashcard = {question: question, translation: translation};
+    flashcards.push(newFlashcard);
+});
+
+
+app.get('/', (req, res) => res.render("home"));
 
 app.listen(3000, () => console.log("Flashcard app is listening"));

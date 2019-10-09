@@ -3,7 +3,6 @@
   
   
   <body>
-    
     <header class="container-fluid">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
@@ -74,18 +73,41 @@
       <div class="row">
 
           <div class="col-lg-6 p-0">  
-            <button 
+            <!-- <button 
+              type="submit"
               onclick = "handlers.addFlashcard()" 
               class="btn btn-outline-dark btn-sm d-flex align-self-start mb-1">
-              Upload Flashcards</button>
-            <div class="row m-0 p-0">
-              <div class="col-lg-6 p-0">
-                <textarea id="addFlashcardQuestionInput" type="text" placeholder="Question..."></textarea>
-              </div>
-              <div class="col-lg-6 p-0">
-                <textarea id="addFlashcardTranslationInput" type="text" placeholder="Answer..."></textarea>
-              </div>
-            </div>
+              Upload Flashcards</button> -->
+              <form action="/newFlashcard" method="POST">
+                  <button 
+                  type="submit"
+                  onclick = "handlers.addFlashcard()" 
+                  class="btn btn-outline-dark btn-sm d-flex align-self-start mb-1">
+                  Upload Flashcards</button>
+                  <div class="form-row">
+                    <div class="col-lg-6 p-0">
+                      <textarea 
+                      id="addFlashcardQuestionInput" 
+                      name="question" 
+                      type="text" 
+                      placeholder="Question..."></textarea>
+                    </div>
+                    <div class="col-lg-6 p-0">
+                        <textarea id="addFlashcardTranslationInput" 
+                        name="translation" type="text" 
+                        placeholder="Answer..."></textarea>
+                    </div>
+                  </div>
+                  
+              </form>  
+            <!-- <div class="row m-0 p-0">
+                <div class="col-lg-6 p-0">
+                  <textarea id="addFlashcardQuestionInput" name="question" type="text" placeholder="Question..."></textarea>
+                </div>
+                <div class="col-lg-6 p-0">
+                  <textarea id="addFlashcardTranslationInput" name="translation" type="text" placeholder="Answer..."></textarea>
+                </div>
+            </div> -->
           </div>
 
           <div class="col-lg-6 p-0">
