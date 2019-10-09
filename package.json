@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/tomignarri/Flashcard-App#readme",
   "dependencies": {
-    "@google-cloud/translate": "^4.1.3"
+    "@google-cloud/translate": "^4.1.3",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1"
   }
 }
