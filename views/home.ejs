@@ -49,39 +49,62 @@
     <!-- Flashcard and next/previous buttons -->
     <div class = "container mb-5">
       <div class="row">
-        <div class="col-sm-3 d-flex justify-content-end align-self-center">
+        <div class="col-1 col-sm-2 col-lg-3 mx-0 px-0 d-flex justify-content-end align-self-center">
           <button id = "previousFlashcard" class="btn btn-outline-dark btn-lg">
           <i class="fas fa-angle-left"></i>
           </button>
         </div>
-        <div class="col-lg-6">
+        <div class="col-10 col-sm-8 col-lg-6">
           <div id = "displayFlashcard">
             <span id = "clickableFlashcardDisplay">
               <p id = "flashcardDisplayArea" ></p>
             </span>
           </div>
         </div>
-        <div class="col-sm-3 d-flex justify-content-start align-self-center">
+        <div class="col-1 col-sm-2 col-lg-3 mx-0 px-0 d-flex justify-content-start align-self-center">
           <button id = "nextFlashcard"  class="btn btn-outline-dark btn-lg">
           <i class="fas fa-angle-right"></i></button>
         </div>
       </div>
     </div>
+
+   
+
+    <!-- <div class="flashcardContainer">
+      <div id = "displayFlashcard">
+          <span id = "clickableFlashcardDisplay">
+            <p id = "flashcardDisplayArea" ></p>
+          </span>
+      </div>
+      <div id="scrollButtons">
+        
+            <button id = "previousFlashcard" class="btn btn-outline-dark btn-lg">
+              <i class="fas fa-angle-left"></i>
+            </button>
+           
+        
+            <button id = "nextFlashcard"  class="btn btn-outline-dark btn-lg">
+                <i class="fas fa-angle-right"></i>
+            </button>
+        </div> 
+      </div>
+        
+    </div>   -->
+      
+        
+      
+
+    
     
     <!-- Sections to add flashcards and view online translation -->
     <div class="container">
       <div class="row">
 
           <div class="col-lg-6 p-0">  
-            <!-- <button 
-              type="submit"
-              onclick = "handlers.addFlashcard()" 
-              class="btn btn-outline-dark btn-sm d-flex align-self-start mb-1">
-              Upload Flashcards</button> -->
-              <form action="/newFlashcard" method="POST">
+              <form action="/newFlashcard" method="post">
                   <button 
                   type="submit"
-                  onclick = "handlers.addFlashcard()" 
+                  
                   class="btn btn-outline-dark btn-sm d-flex align-self-start mb-1">
                   Upload Flashcards</button>
                   <div class="form-row">
@@ -98,16 +121,7 @@
                         placeholder="Answer..."></textarea>
                     </div>
                   </div>
-                  
               </form>  
-            <!-- <div class="row m-0 p-0">
-                <div class="col-lg-6 p-0">
-                  <textarea id="addFlashcardQuestionInput" name="question" type="text" placeholder="Question..."></textarea>
-                </div>
-                <div class="col-lg-6 p-0">
-                  <textarea id="addFlashcardTranslationInput" name="translation" type="text" placeholder="Answer..."></textarea>
-                </div>
-            </div> -->
           </div>
 
           <div class="col-lg-6 p-0">
@@ -130,7 +144,7 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <!-- <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -148,12 +162,12 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     
 
     <!-- The Modal -->
-    <!-- <div id="myModal" class="modal">
+    <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         
@@ -172,7 +186,7 @@
         </table>
         
       </div>
-    </div>  -->
+    </div> 
     
     <script src="https://kit.fontawesome.com/939b348bb5.js" crossorigin="anonymous"></script>
     <script src="scripts/script.js"></script>

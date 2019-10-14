@@ -1,13 +1,12 @@
 
 
-
 #displayFlashcard {
   margin: auto;
   width: 80%;
   border: 1px solid grey;
   border-radius: 10px;
   height: 250px;
-  text-align:center;
+  text-align: center;
   box-shadow: 5px 5px #888888;
 }
 
