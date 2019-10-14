@@ -88,6 +88,12 @@ textarea {
   resize: none;
 }
 
+@media only screen and (max-width: 992px) {
+  textarea {
+    border-right: 1px solid #979797;
+  }
+}
+
 #googleTranslateOutput {
   height: 150px;
   border: 1px solid #979797;
