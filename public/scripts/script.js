@@ -3,8 +3,11 @@
 // Overall list of flashcards.
 var flashcardList = {
   
-  
-  flashcards: [],
+  // Populate this array with a request to a JSON endpoint
+  flashcards: [
+
+      
+  ],
   
   // Adds a flashcard object to Flashcard array.
   addFlashcard: function(fcTextQuestion, fcTextTranslated) {
@@ -25,7 +28,7 @@ var handlers = {
   
   isFlipped: false,
   
-  // Recieves Input.
+  // Receives Input.
   addFlashcard: function() {
     var addFlashcardQuestionInput = document.getElementById('addFlashcardQuestionInput');
     var addFlashcardTranslationInput = document.getElementById('addFlashcardTranslationInput');
@@ -132,7 +135,7 @@ var handlers = {
 // Other functions...spot to add event listeners later
 var view = {
   
-  // Recieve events from clicks and run functions from handlers.
+  // Receive events from clicks and run functions from handlers.
   setUpEventListeners: function(){
     console.log("setUp ran"); 
     
