@@ -21,6 +21,9 @@ var flashcardList = {
 };
 
 
+
+
+
 var currentFlashcard = 0;
 
 // Handle button functionality.

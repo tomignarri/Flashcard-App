@@ -2,14 +2,30 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 
+// Connect to database.
+var url = process.env.DATABASEURL;
+mongoose.connect(url, {
+	useNewUrlParser: true,
+	useCreateIndex: true,
+}).then(() => {
+	console.log("connected to mongoDB");
+}).catch(err => {
+	console.log("Error:", err.message);
+});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
+app.use(flash());
 
 
-var flashcards = [
+var flashcardSchema = new mongoose.Schema ({
+    question: String,
+    translation: String
+});
 
-];
+//creates model with above schema and has methods such as .find etc.
+var Flashcard = mongoose.model("Flashcard", flashcardSchema); 
 
 
 
@@ -21,7 +37,12 @@ app.post("/newFlashcard", function(req, res) {
     var question = req.body.question;
     var translation = req.body.translation;
     var newFlashcard = {question: question, translation: translation};
-    flashcards.push(newFlashcard);
+    Flashcard.create(newFlashcard, function(){
+
+    });
+    
+    
+    //flashcards.push(newFlashcard);
     res.redirect("/");
     console.log(flashcards);
 });
