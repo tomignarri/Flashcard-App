@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
 
 // Connect to database.
 var url = process.env.DATABASEURL;
@@ -27,8 +28,6 @@ var flashcardSchema = new mongoose.Schema ({
 //creates model with above schema and has methods such as .find etc.
 var Flashcard = mongoose.model("Flashcard", flashcardSchema); 
 
-
-
 app.get('/', (req, res) => res.render("home"));
 
 
@@ -37,15 +36,19 @@ app.post("/newFlashcard", function(req, res) {
     var question = req.body.question;
     var translation = req.body.translation;
     var newFlashcard = {question: question, translation: translation};
-    Flashcard.create(newFlashcard, function(){
-
+    Flashcard.create(newFlashcard, function(err, newlyCreated){
+        if(err){
+	        console.log(err);
+	    } else {
+			res.redirect("/");
+		}
     });
-    
-    
-    //flashcards.push(newFlashcard);
-    res.redirect("/");
-    console.log(flashcards);
 });
+
+// Edit flashcard
+
+
+
 
 
 app.listen(3000, () => console.log("Flashcard app is listening"));
