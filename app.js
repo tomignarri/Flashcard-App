@@ -30,7 +30,6 @@ var Flashcard = mongoose.model("Flashcard", flashcardSchema);
 
 app.get('/', (req, res) => res.render("home"));
 
-
 // Post to an input action
 app.post("/newFlashcard", function(req, res) {
     var question = req.body.question;
@@ -45,7 +44,15 @@ app.post("/newFlashcard", function(req, res) {
     });
 });
 
+// Show form to create new campground
+app.get("/flashcards/new", function(req, res){
+
+});
+
 // Edit flashcard
+
+
+// Destroy Flashcard
 
 
 
