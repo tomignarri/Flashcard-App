@@ -2,9 +2,10 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var methodOverride = require("method-override");
 
 // Connect to database.
-var url = process.env.DATABASEURL;
+var url = "mongodb+srv:tomi:466JCC2U7OWDMO9d@cluster0-ainnu.mongodb.net/fatest?retryWrites=true&w=majority";
 mongoose.connect(url, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
@@ -16,8 +17,10 @@ mongoose.connect(url, {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
+
+// Override HTTP verbs if necessary.
 app.use(methodOverride("_method"));
-app.use(flash());
+
 
 
 var flashcardSchema = new mongoose.Schema ({
@@ -44,9 +47,19 @@ app.post("/newFlashcard", function(req, res) {
     });
 });
 
+// Show info.
+app.get("/info",function (req, res) {
+    res.render("info");
+});
+
+// Show all flashcards
+app.get("/flashcards", function(req, res){
+  
+});
+
 // Show form to create new campground
 app.get("/flashcards/new", function(req, res){
-
+  
 });
 
 // Edit flashcard
