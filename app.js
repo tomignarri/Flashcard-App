@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 var methodOverride = require("method-override");
 
 // Connect to database.
-var url = "mongodb+srv:tomi:466JCC2U7OWDMO9d@cluster0-ainnu.mongodb.net/fatest?retryWrites=true&w=majority";
+var url = "mongodb+srv://tomi:466JCC2U7OWDMO9d@cluster0-ainnu.mongodb.net/fatest?retryWrites=true&w=majority";
 mongoose.connect(url, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
@@ -16,6 +16,8 @@ mongoose.connect(url, {
 });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
+// Set 'views' directory for any views 
+// being rendered res.render()
 app.set("view engine", "ejs");
 
 // Override HTTP verbs if necessary.
@@ -34,10 +36,11 @@ var Flashcard = mongoose.model("Flashcard", flashcardSchema);
 app.get('/', (req, res) => res.render("home"));
 
 // Post to an input action
-app.post("/newFlashcard", function(req, res) {
+app.post("/flashcards", function(req, res) {
     var question = req.body.question;
     var translation = req.body.translation;
     var newFlashcard = {question: question, translation: translation};
+    console.log(newFlashcard);
     Flashcard.create(newFlashcard, function(err, newlyCreated){
         if(err){
 	        console.log(err);
@@ -54,12 +57,12 @@ app.get("/info",function (req, res) {
 
 // Show all flashcards
 app.get("/flashcards", function(req, res){
-  
+    res.render("flashcards");
 });
 
 // Show form to create new campground
-app.get("/flashcards/new", function(req, res){
-  
+app.get("/new", function(req, res){
+  res.render("new");  
 });
 
 // Edit flashcard

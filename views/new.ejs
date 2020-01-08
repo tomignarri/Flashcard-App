@@ -4,12 +4,8 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-lg-6 p-0">  
-            <form action="/newFlashcard" method="post">
-                <button 
-                type="submit"
-                class="btn btn-outline-dark btn-sm d-flex align-self-start mb-1">
-                Upload Flashcards</button>
+        <div class="col-lg-6 pt-4 px-0">  
+            <form action="/flashcards" method="POST">
                 <div class="form-row">
                   <div class="col-lg-6 p-0">
                     <textarea 
@@ -23,27 +19,15 @@
                       name="translation" type="text" 
                       placeholder="Answer..."></textarea>
                   </div>
-                </div>
+                  <button 
+                    type="submit"
+                    class="btn btn-outline-dark btn-sm d-flex align-self-start mb-1">
+                    Upload Flashcards</button>
+                  </div>
             </form>  
-        </div>
-
-        <div class="col-lg-6 p-0">
-          <button 
-            class="btn btn-outline-dark btn-sm mb-1"
-            id = "accessGoogleTranslateButton">Make Request</button>
-          <div class="row m-0 p-0">
-            <div id="googleTranslateOutput" class="col-lg-12 m-0">
-            </div>
-          </div>
         </div>
     </div>
   </div>
-
-
-
-
-
-
 
 
 <% include ./partials/footer %>
