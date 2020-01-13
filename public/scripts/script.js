@@ -107,31 +107,31 @@ var handlers = {
   
   
   
-  displayFlashcardList: function(){
-    var tbody = document.getElementById("flashCardListTable");
+//   displayFlashcardList: function(){
+//     var tbody = document.getElementById("flashCardListTable");
     
-    tbody.innerHTML = '';
+//     tbody.innerHTML = '';
     
-    flashcardList.flashcards.forEach(function(flashcard, position){
+//     flashcardList.flashcards.forEach(function(flashcard, position){
 
-      // Create an empty <tr> element and add it to the 1st position of the tbody:
-      var row = tbody.insertRow(position);
+//       // Create an empty <tr> element and add it to the 1st position of the tbody:
+//       var row = tbody.insertRow(position);
     
-      // Insert new cells (<td> elements) of the "new" <tr> element:
-      //var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      var cell3 = row.insertCell(2);
-      //var cell4 = row.insertCell(3);
+//       // Insert new cells (<td> elements) of the "new" <tr> element:
+//       //var cell1 = row.insertCell(0);
+//       var cell2 = row.insertCell(1);
+//       var cell3 = row.insertCell(2);
+//       //var cell4 = row.insertCell(3);
     
-      // Add some text to the new cells:
-      //cell1.innerHTML = (position + 1).toString();
-      cell2.innerHTML = flashcardList.flashcards[position].fcTextQuestion;
-      cell3.innerHTML = flashcardList.flashcards[position].fcTextTranslated;
-      //cell4.appendChild
+//       // Add some text to the new cells:
+//       //cell1.innerHTML = (position + 1).toString();
+//       cell2.innerHTML = flashcardList.flashcards[position].fcTextQuestion;
+//       cell3.innerHTML = flashcardList.flashcards[position].fcTextTranslated;
+//       //cell4.appendChild
       
-    });
-  }
-};
+//     });
+//   }
+// };
 
 
 

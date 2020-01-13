@@ -57,7 +57,14 @@ app.get("/info",function (req, res) {
 
 // Show all flashcards
 app.get("/flashcards", function(req, res){
-    res.render("flashcards");
+    
+    Flashcard.find({}, function(err, allFlashcards){
+      if(err){
+        console.log(err);
+      } else {
+        res.render("flashcards", {flashcards: allFlashcards});
+      }
+    }); 
 });
 
 // Show form to create new campground
