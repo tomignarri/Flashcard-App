@@ -33,7 +33,15 @@ var flashcardSchema = new mongoose.Schema ({
 //creates model with above schema and has methods such as .find etc.
 var Flashcard = mongoose.model("Flashcard", flashcardSchema); 
 
-app.get('/', (req, res) => res.render("home"));
+app.get('/', (req, res) => {
+  Flashcard.find({}, function(err, allFlashcards){
+    if(err){
+      console.log(err);
+    } else {
+      res.render("home", {flashcardsDB: allFlashcards});
+    }
+  }); 
+});
 
 // Post to an input action
 app.post("/flashcards", function(req, res) {
@@ -57,7 +65,6 @@ app.get("/info",function (req, res) {
 
 // Show all flashcards
 app.get("/flashcards", function(req, res){
-    
     Flashcard.find({}, function(err, allFlashcards){
       if(err){
         console.log(err);

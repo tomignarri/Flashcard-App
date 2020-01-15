@@ -5,7 +5,7 @@ var flashcardList = {
   
   // Populate this array with a request to a JSON endpoint
   flashcards: [
-
+    
       
   ],
   
@@ -16,6 +16,7 @@ var flashcardList = {
       fcTextTranslated: fcTextTranslated
     });
   },
+
   
   
 };
@@ -32,30 +33,30 @@ var handlers = {
   isFlipped: false,
   
   // Receives Input.
-  addFlashcard: function() {
-    var addFlashcardQuestionInput = document.getElementById('addFlashcardQuestionInput');
-    var addFlashcardTranslationInput = document.getElementById('addFlashcardTranslationInput');
-    //var displayFlashcardCount = document.querySelector("#displayFlashcardCount");
+  // addFlashcard: function() {
+  //   var addFlashcardQuestionInput = document.getElementById('addFlashcardQuestionInput');
+  //   var addFlashcardTranslationInput = document.getElementById('addFlashcardTranslationInput');
+  //   //var displayFlashcardCount = document.querySelector("#displayFlashcardCount");
     
-    // Trim any values entered to avoid entering spaces and for user QOF.
-    addFlashcardQuestionInput.value.trim();
-    addFlashcardTranslationInput.value.trim();
+  //   // Trim any values entered to avoid entering spaces and for user QOF.
+  //   addFlashcardQuestionInput.value.trim();
+  //   addFlashcardTranslationInput.value.trim();
     
-    // This only runs the rest of the function if the forms have content.
-    if(addFlashcardQuestionInput.value || addFlashcardTranslationInput.value){
-    // Invoke addFlashcard function from flashcardList object.
-    flashcardList.addFlashcard(addFlashcardQuestionInput.value, addFlashcardTranslationInput.value);
+  //   // This only runs the rest of the function if the forms have content.
+  //   if(addFlashcardQuestionInput.value || addFlashcardTranslationInput.value){
+  //   // Invoke addFlashcard function from flashcardList object.
+  //   flashcardList.addFlashcard(addFlashcardQuestionInput.value, addFlashcardTranslationInput.value);
     
-    // CLear the input fields.
-    addFlashcardQuestionInput.value = '';
-    addFlashcardTranslationInput.value = '';
+  //   // CLear the input fields.
+  //   addFlashcardQuestionInput.value = '';
+  //   addFlashcardTranslationInput.value = '';
       
-    document.querySelector("#displayFlashcardTotal").textContent = flashcardList.flashcards.length;
+  //   document.querySelector("#displayFlashcardTotal").textContent = flashcardList.flashcards.length;
 
-    console.dir(flashcardList.flashcards);
+  //   console.dir(flashcardList.flashcards);
 
-    }  
-  },
+  //   }  
+  // },
   
   
   displayGoogleTranslate: function() {
