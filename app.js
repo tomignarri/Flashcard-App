@@ -97,12 +97,12 @@ app.put("/", function(req, res){
 
 // Destroy Flashcard
 app.delete("/flashcards/:id", function(req, res){
-    Flashcard.findByIdAndRemove(req.params.id, function(req, res){
+    Flashcard.findByIdAndRemove(req.params.id, function(err){
       if(err){
 		    res.redirect("back");
 		  } else {
         //req.flash("success", "flashcard deleted.");
-		    res.redirect("flashcards");
+		    res.redirect("/flashcards");
 		  }
     });
 });
