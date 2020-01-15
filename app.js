@@ -4,6 +4,12 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var methodOverride = require("method-override");
 
+// Fix mongoose deprecations
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
 // Connect to database.
 var url = "mongodb+srv://tomi:466JCC2U7OWDMO9d@cluster0-ainnu.mongodb.net/fatest?retryWrites=true&w=majority";
 mongoose.connect(url, {
@@ -80,10 +86,26 @@ app.get("/new", function(req, res){
 });
 
 // Edit flashcard
+app.get("/", function(req, res){
+  
+});
 
+// Update flashcard
+app.put("/", function(req, res){
+  
+});
 
 // Destroy Flashcard
-
+app.delete("/flashcards/:id", function(req, res){
+    Flashcard.findByIdAndRemove(req.params.id, function(req, res){
+      if(err){
+		    res.redirect("back");
+		  } else {
+        //req.flash("success", "flashcard deleted.");
+		    res.redirect("flashcards");
+		  }
+    });
+});
 
 
 

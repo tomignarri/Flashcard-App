@@ -17,6 +17,18 @@ Add New flashCardListTable</button></a>
         <tr>
           <td><%= flashcard.question %></td>
           <td><%= flashcard.translation %></td>
+          <td><form id="deleteForm" 
+            action="/flashcards/<%=flashcard._id%>?_method=DELETE"" method="POST">
+            <input type="submit" 
+            class="btn btn-xs btn-danger" 
+            value="Delete">
+          </td>
+          <td>
+            <a 
+            href="" 
+            class="btn btn-xs btn-warning">Edit
+             </a>
+          </td>
         </tr>
       <% }); %>
     
