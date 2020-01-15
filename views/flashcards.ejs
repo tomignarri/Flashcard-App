@@ -9,7 +9,9 @@ Add New flashCardListTable</button></a>
     <thead>
       <tr>
         <th style="width:30%" scope="col">Question</th>
-        <th style="width:70%" scope="col">Answer</th>
+        <th style="width:50%" scope="col">Answer</th>
+        <th style="width:10%" scope="col"></th>
+        <th style="width:10%" scope="col"></th>
       </tr>
     </thead> 
     <tbody id="flashCardListTable">
@@ -18,14 +20,14 @@ Add New flashCardListTable</button></a>
           <td><%= flashcard.question %></td>
           <td><%= flashcard.translation %></td>
           <td><form id="deleteForm" 
-            action="/flashcards/<%=flashcard._id%>?_method=DELETE"" method="POST">
+            action="/flashcards/<%=flashcard._id%>?_method=DELETE" method="POST">
             <input type="submit" 
             class="btn btn-xs btn-danger" 
             value="Delete">
           </td>
           <td>
             <a 
-            href="" 
+            href="/<%=flashcard._id%>/edit" 
             class="btn btn-xs btn-warning">Edit
              </a>
           </td>

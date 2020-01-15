@@ -1,0 +1,38 @@
+<% include ./partials/header %>
+
+<!-- Sections to add flashcards and view online translation -->
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-6 pt-4 px-0">  
+            <form action="/flashcards" method="POST">
+                <div class="form-row">
+                  <div class="col-lg-6 p-0">
+                      <textarea 
+                      id="addFlashcardQuestionInput" 
+                      name="question" 
+                      type="text" 
+                      placeholder="Question..."
+                      value="<%= flashcard.question %>">
+                      </textarea>
+                  </div>
+                  <div class="col-lg-6 p-0">
+                      <textarea id="addFlashcardTranslationInput" 
+                      name="translation" 
+                      type="text" 
+                      placeholder="Answer..." 
+                      value="<%= flashcard.translation %>">
+                    </textarea>
+                  </div>
+                  <button 
+                    type="submit"
+                    class="btn btn-outline-dark btn-sm d-flex align-self-start mb-1">
+                    Upload Flashcard</button>
+                  </div>
+            </form>  
+        </div>
+    </div>
+  </div>
+
+
+<% include ./partials/footer %>

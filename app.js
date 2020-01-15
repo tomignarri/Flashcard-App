@@ -59,7 +59,7 @@ app.post("/flashcards", function(req, res) {
         if(err){
 	        console.log(err);
 	    } else {
-			res.redirect("/");
+			res.redirect("/flashcards");
 		}
     });
 });
@@ -86,13 +86,25 @@ app.get("/new", function(req, res){
 });
 
 // Edit flashcard
-app.get("/", function(req, res){
-  
+app.get("/flashcards/:id/edit", function(req, res){
+    Flashcard.findById(req.params.id, function(err, selectedFlashcard){
+      if(err){
+		    req.flash("error", "Flashcard not found!");
+		  } else {
+		    res.render("flashcards/edit", {flashcard: selectedFlashcard});
+		  }
+    });  
 });
 
 // Update flashcard
-app.put("/", function(req, res){
-  
+app.put("/:id", function(req, res){
+  Flashcard.findByIdAndUpdate(req.params.id, function(err, updatedFlashcard){
+    if(err){
+      res.redirect("/flashcards");
+    } else {
+      res.redirect("/flashcards");
+    }
+  });  
 });
 
 // Destroy Flashcard
