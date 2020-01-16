@@ -91,7 +91,7 @@ app.get("/flashcards/:id/edit", function(req, res){
       if(err){
 		    req.flash("error", "Flashcard not found!");
 		  } else {
-		    res.render("flashcards/edit", {flashcard: selectedFlashcard});
+		    res.render("edit", {flashcard: selectedFlashcard});
 		  }
     });  
 });
