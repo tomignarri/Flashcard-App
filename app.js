@@ -97,8 +97,8 @@ app.get("/flashcards/:id/edit", function(req, res){
 });
 
 // Update flashcard
-app.put("/:id", function(req, res){
-  Flashcard.findByIdAndUpdate(req.params.id, function(err, updatedFlashcard){
+app.put("/flashcards/:id", function(req, res){
+  Flashcard.findByIdAndUpdate(req.params.id, req.body.flashcard, function(err, updatedFlashcard){
     if(err){
       res.redirect("/flashcards");
     } else {

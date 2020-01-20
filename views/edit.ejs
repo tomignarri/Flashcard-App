@@ -5,12 +5,12 @@
     <div class="row">
 
         <div class="col-lg-6 pt-4 px-0">  
-            <form action="/flashcards" method="POST">
+            <form action="/flashcards/<%= flashcard._id %>/?_method=PUT" method="POST">
                 <div class="form-row">
                   <div class="col-lg-6 p-0">
                       <textarea 
                       id="addFlashcardQuestionInput" 
-                      name="question" 
+                      name="flashcard[question]" 
                       type="text" 
                       placeholder="Question...">
                       <%= flashcard.question %>
@@ -18,7 +18,7 @@
                   </div>
                   <div class="col-lg-6 p-0">
                       <textarea id="addFlashcardTranslationInput" 
-                      name="translation" 
+                      name="flashcard[translation]" 
                       type="text" 
                       placeholder="Answer...">
                       <%= flashcard.translation %>
