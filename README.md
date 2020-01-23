@@ -9,9 +9,9 @@ Flashcard App
 
 
 TODO
-- save flashcards to database
-- fetch google tranlate definitions
-- use bootstrap grids for responsiveness
-- flashcard editing and deletion
+- fetch google translate definitions
+- style refining
+- animation for cards switching
+- update info page
 
 
