@@ -20,10 +20,12 @@ Add New flashCardListTable</button></a>
           <td><%= flashcard.question %></td>
           <td><%= flashcard.translation %></td>
           <td><form id="deleteForm" 
-            action="/flashcards/<%=flashcard._id%>?_method=DELETE" method="POST">
+            action="/flashcards/<%=flashcard._id%>?_method=DELETE"
+            method="POST">
             <input type="submit" 
             class="btn btn-xs btn-danger" 
             value="Delete">
+          </form>
           </td>
           <td>
             <a 
@@ -33,8 +35,8 @@ Add New flashCardListTable</button></a>
           </td>
         </tr>
       <% }); %>
-    
     </tbody>
 </table>
+ 
 
 <% include ./partials/footer %>
