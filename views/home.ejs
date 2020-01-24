@@ -28,7 +28,7 @@
         <div class="col-10 col-sm-8 col-lg-6">
           <div id = "displayFlashcard">
             <span id = "clickableFlashcardDisplay">
-              <p id = "flashcardDisplayArea" ></p>
+              <div id = "flashcardTextDisplayArea"></div>
             </span>
           </div>
         </div>
@@ -46,9 +46,9 @@
           <div class="col-lg-12 p-0">
             <button 
               class="btn btn-outline-dark btn-sm mb-1"
-              id = "accessGoogleTranslateButton">Make Request</button>
+              id = "accessBingTranslateButton">Translate Flashcard</button>
             <div class="row m-0 p-0">
-              <div id="googleTranslateOutput" class="col-lg-12 m-0">
+              <div id="bingTranslateOutput" class="col-lg-12 m-0">
               </div>
             </div>
           </div>
@@ -56,6 +56,9 @@
     </div>
 
     <script>
+    // const request = require('request');
+    // const uuidv4 = require('uuid/v4');
+
     // Overall list of flashcards.
     var flashcardList = {
       
@@ -80,6 +83,37 @@
     document.querySelector("#displayFlashcardTotal").textContent = flashcardList.flashcards.length;
     
     console.log("the rest:",flashcardList.flashcards);
+
+    // // Bing env variable, key and endpoint
+    // var key_var = 'TRANSLATOR_TEXT_SUBSCRIPTION_KEY';
+    // if (!process.env[key_var]) {
+    //     throw new Error('Please set/export the following environment variable: ' + key_var);
+    // }
+    // var subscriptionKey = process.env[key_var];
+    // var endpoint_var = 'TRANSLATOR_TEXT_ENDPOINT';
+    // if (!process.env[endpoint_var]) {
+    //     throw new Error('Please set/export the following environment variable: ' + endpoint_var);
+    // }
+    // var endpoint = process.env[endpoint_var];
+
+    // let options = {
+    //     method: 'POST',
+    //     baseUrl: endpoint,
+    //     url: 'translate',
+    //     qs: {
+    //       'api-version': '3.0',
+    //       'to': ['en']
+    //     },
+    //     headers: {
+    //       'Ocp-Apim-Subscription-Key': subscriptionKey,
+    //       'Content-type': 'application/json',
+    //       'X-ClientTraceId': uuidv4().toString()
+    //     },
+    //     body: [{
+    //           'text': flashcardList.flashcards[currentFlashcard].fcTextQuestion
+    //     }],
+    //     json: true,
+    // };
     
     
     var currentFlashcard = 0;
@@ -88,29 +122,6 @@
     var handlers = {
       
       isFlipped: false,
-      
-      displayGoogleTranslate: function() {
-        var request = new XMLHttpRequest();
-    
-        request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
-    
-        request.onload = function() {
-          // Begin accessing JSON data here
-          var data = JSON.parse(this.response)
-    
-          if (request.status >= 200 && request.status < 400) {
-            data.forEach(movie => {
-              console.log(movie.title)
-            })
-          } else {
-            console.log('error')
-          };
-        };
-    
-        // Send request
-        request.send();
-      },
-      
       
       // Flip flashcard when the user presses the flashcard.
       displayFlashcard: function(flashcardNumber){
@@ -123,18 +134,24 @@
         }
         
         if(this.isFlipped){
-          document.getElementById("flashcardDisplayArea").innerHTML = flashcardList.flashcards[flashcardNumber].fcTextTranslated;
+          document.getElementById("flashcardTextDisplayArea").innerHTML = flashcardList.flashcards[flashcardNumber].fcTextTranslated;
           document.getElementById("displayFlashcard").style.backgroundColor = "lightgreen";
         } else {
           //this.displayFlashcards(currentFlashcard);
-          document.getElementById("flashcardDisplayArea").innerHTML = flashcardList.flashcards[flashcardNumber].fcTextQuestion;
-          document.getElementById("displayFlashcard").style.backgroundColor = "white";
+          document.getElementById("flashcardTextDisplayArea").innerHTML = flashcardList.flashcards[flashcardNumber].fcTextQuestion;
+          document.getElementById("displayFlashcard").style.backgroundColor = "aliceblue";
         }
         
         // Show current flashcard index.
         document.querySelector("#displayFlashcardCount").textContent = (currentFlashcard + 1);
         
       },
+
+      // displayBingTranslate: function() {
+      //   request(options, function(err, res, body){
+      //     document.querySelector("#bingTranslateOutput") = JSON.stringify(body, null, 4);
+      //   });
+      // },
     };
     
     
@@ -144,14 +161,13 @@
       
       // Receive events from clicks and run functions from handlers.
       setUpEventListeners: function(){
-        console.log("setUp ran"); 
         
         // Variables representing button objects on the DOM.
         var displayFlashcardsButton = document.getElementById("displayFlashcards");
         var nextFlashcardButton = document.getElementById("nextFlashcard");
         var previousFlashcardButton = document.getElementById("previousFlashcard");
         var flipFlashcardButton = document.getElementById("clickableFlashcardDisplay");
-        var accessGoogleTranslate = document.getElementById("accessGoogleTranslateButton");
+        // var accessBingTranslate = document.getElementById("accessBingTranslateButton");
         //var displayFlashcardNumber = document.querySelector("#displayFlashcardCount");
         
         flipFlashcardButton.addEventListener("click", function(){
@@ -160,22 +176,21 @@
         });
     
         // The conditional here checks that the button exists on the DOM.
-        if(displayFlashcardsButton){
-          console.log("display button pressed");  
+        if(displayFlashcardsButton){ 
           displayFlashcardsButton.addEventListener("click", function() {
             handlers.isFlipped = false;
             handlers.displayFlashcard(currentFlashcard);
           });
         }
         
-        accessGoogleTranslate.addEventListener("click", function() {
-          handlers.displayGoogleTranslate();
-        });
+        // accessBingTranslate.addEventListener("click", function() {
+        //   handlers.displayBingTranslate();
+        // });
         
         nextFlashcardButton.addEventListener("click", function() {
           
           // Prevent using from iterating card count before displaying cards.
-          if(document.querySelector("#flashcardDisplayArea").innerHTML === ''){
+          if(document.querySelector("#flashcardTextDisplayArea").innerHTML === ''){
             window.alert("Press get started button first");
             return;
           }
@@ -193,7 +208,7 @@
         previousFlashcardButton.addEventListener("click", function() {
           
           // Prevent using from iterating card count before displaying cards.
-          if(document.querySelector("#flashcardDisplayArea").innerHTML === ''){
+          if(document.querySelector("#flashcardTextDisplayArea").innerHTML === ''){
             window.alert("Press get started button first");
             return;
           }
@@ -213,6 +228,8 @@
     view.setUpEventListeners();
 
     </script>
+
+    <script src="/scripts/translator.js"></script> 
  
     
     <% include ./partials/footer %>
