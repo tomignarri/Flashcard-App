@@ -42,7 +42,7 @@ module.exports.displayBingTranslate = function() {
   console.log("translator called");
   
   // request(options, function(err, res, body){
-  //   console.log(JSON.stringify(body, null, 4));
+  //   return JSON.stringify(body, null, 4);
   // });
 };
 

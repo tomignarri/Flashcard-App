@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var methodOverride = require("method-override");
-var translator = require('/public/scripts/translator.js');
+var translator = require('./public/scripts/translator.js');
 
 
 // Fix mongoose deprecations
@@ -121,12 +121,11 @@ app.delete("/flashcards/:id", function(req, res){
     });
 });
 
-app.get("/flashcards/:id/translate", function(){
+app.get("/translate", function(req, res){
+    
+    //res.send or res.json
     translator.displayBingTranslate();
 });
-
-
-
 
 
 
