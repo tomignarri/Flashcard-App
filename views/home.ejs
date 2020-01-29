@@ -40,24 +40,26 @@
     </div>
 
    
-    <!-- Section to view online translation -->
+
+    <!-- Section to view online translation
+    - add form action -->
     <div class="container">
       <div class="row">
           <div class="col-lg-12 p-0">
+            <form action="/translate">
             <button 
               class="btn btn-outline-dark btn-sm mb-1"
               id = "accessBingTranslateButton">Translate Flashcard</button>
-            <div class="row m-0 p-0">
+              <div class="row m-0 p-0">
               <div id="bingTranslateOutput" class="col-lg-12 m-0">
               </div>
+            </form>
             </div>
           </div>
       </div>
     </div>
 
     <script>
-    // const request = require('request');
-    // const uuidv4 = require('uuid/v4');
 
     // Overall list of flashcards.
     var flashcardList = {
@@ -146,11 +148,16 @@
         
       },
 
-      // displayBingTranslate: function() {
-      //   request(options, function(err, res, body){
-      //     document.querySelector("#bingTranslateOutput") = JSON.stringify(body, null, 4);
-      //   });
-      // },
+
+      // Here is where you will make a request to App.js
+      displayBingTranslate: function() {
+        
+        //flashcardList.flashcards[currentFlashcard].fcTextQuestion
+        
+        request(options, function(err, res, body){
+          document.querySelector("#bingTranslateOutput") = JSON.stringify(body, null, 4);
+        });
+      },
     };
     
     
@@ -166,10 +173,14 @@
         var nextFlashcardButton = document.getElementById("nextFlashcard");
         var previousFlashcardButton = document.getElementById("previousFlashcard");
         var flipFlashcardButton = document.getElementById("clickableFlashcardDisplay");
-        // var accessBingTranslate = document.getElementById("accessBingTranslateButton");
+        var accessBingTranslate = document.getElementById("accessBingTranslateButton");
         //var displayFlashcardNumber = document.querySelector("#displayFlashcardCount");
         
         flipFlashcardButton.addEventListener("click", function(){
+          if(document.querySelector("#flashcardTextDisplayArea").innerHTML === ''){
+            window.alert("Press get started button first");
+            return;
+          }
           handlers.isFlipped = !handlers.isFlipped;  
           handlers.displayFlashcard(currentFlashcard);
         });
@@ -182,9 +193,9 @@
           });
         }
         
-        // accessBingTranslate.addEventListener("click", function() {
-        //   handlers.displayBingTranslate();
-        // });
+        accessBingTranslate.addEventListener("click", function() {
+          handlers.displayBingTranslate();
+        });
         
         nextFlashcardButton.addEventListener("click", function() {
           
@@ -227,8 +238,6 @@
     view.setUpEventListeners();
 
     </script>
-
-    <script src="/scripts/translator.js"></script> 
  
     
     <% include ./partials/footer %>

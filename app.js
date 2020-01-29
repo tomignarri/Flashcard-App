@@ -3,8 +3,8 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var methodOverride = require("method-override");
-const request = require('request');
-const uuidv4 = require('uuid/v4');
+var translator = require('/public/scripts/translator.js');
+
 
 // Fix mongoose deprecations
 mongoose.set('useNewUrlParser', true);
@@ -119,6 +119,10 @@ app.delete("/flashcards/:id", function(req, res){
 		    res.redirect("/flashcards");
 		  }
     });
+});
+
+app.get("/flashcards/:id/translate", function(){
+    translator.displayBingTranslate();
 });
 
 

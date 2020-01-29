@@ -2,6 +2,9 @@ const request = require('request');
 const uuidv4 = require('uuid/v4');
 
 
+
+
+
 var key_var = 'TRANSLATOR_TEXT_SUBSCRIPTION_KEY';
 if (!process.env[key_var]) {
     throw new Error('Please set/export the following environment variable: ' + key_var);
@@ -34,18 +37,16 @@ let options = {
     json: true,
 };
 
-var accessBingTranslate = document.getElementById("accessBingTranslateButton");
 
-function displayBingTranslate() {
-  request(options, function(err, res, body){
-    document.querySelector("#bingTranslateOutput") = JSON.stringify(body, null, 4);
-  });
+module.exports.displayBingTranslate = function() {
+  console.log("translator called");
+  
+  // request(options, function(err, res, body){
+  //   console.log(JSON.stringify(body, null, 4));
+  // });
 };
 
 
-accessBingTranslate.addEventListener("click", function() {
-  displayBingTranslate();
-});
 
 
 
