@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var methodOverride = require("method-override");
-var translator = require('./public/scripts/translator.js');
+// var translator = require('./public/scripts/translator.js');
 
 
 // Fix mongoose deprecations
@@ -13,7 +13,7 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
 // Connect to database.
-var url = "mongodb+srv://tomi:466JCC2U7OWDMO9d@cluster0-ainnu.mongodb.net/fatest?retryWrites=true&w=majority";
+var url = "mongodb+srv://tomi:niuB5JOZmWSpNnho@cluster0-ainnu.mongodb.net/fatest?retryWrites=true&w=majority";
 mongoose.connect(url, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
@@ -121,11 +121,13 @@ app.delete("/flashcards/:id", function(req, res){
     });
 });
 
-app.get("/translate", function(req, res){
+
+// Translator code
+// app.get("/translate", function(req, res){
     
-    //res.send or res.json
-    translator.displayBingTranslate();
-});
+//     //res.send or res.json
+//     translator.displayBingTranslate();
+// });
 
 
 
