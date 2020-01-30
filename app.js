@@ -131,4 +131,4 @@ app.delete("/flashcards/:id", function(req, res){
 
 
 
-app.listen(3000, () => console.log("Flashcard app is listening"));
+app.listen(process.env.PORT || 3000, () => console.log("Flashcard app is listening"));
