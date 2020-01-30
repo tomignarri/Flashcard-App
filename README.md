@@ -2,7 +2,7 @@
 Flashcard App
 ------------
 
-[HEROKU LINK](https://pacific-bayou-03366.herokuapp.com/flashcards)
+[HEROKU LINK](https://pacific-bayou-03366.herokuapp.com)
 
 - Create Flashcards
 - Practice with your flashcards
